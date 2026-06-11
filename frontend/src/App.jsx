@@ -4,9 +4,25 @@ function App() {
   return (
     <div className="card-container">
       <div className="flex flex-wrap justify-center">
-        <Card />
-        <Card />
-        <Card />
+
+        <Card 
+        title = "Insertion Sort"
+        />
+        <Card 
+        title = "Selection Sort" 
+        />
+        <Card 
+        title = "Bubble Sort"
+        />
+
+        <Card 
+        title = "Merge Sort"
+        />
+
+        <Card 
+        title = "Quick Sort"
+        />
+
       </div>
     </div>
   );
