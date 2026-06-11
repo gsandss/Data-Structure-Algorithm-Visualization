@@ -1,11 +1,7 @@
-import profilePicture from './assets/profilePicture.png';
-import { motion } from 'framer-motion';
-
-
-function Card({title, description, color, profilePicture}) {
+function Card({title, description, color, gif}) {
     return(  
         <div className="card">
-            <img src={profilePicture} alt="Profile" />
+            {gif && <img className="card-img" src={gif} alt={`${title} animation`} />}
             <h2>{title}</h2>
             <p>{description}</p>
         </div>

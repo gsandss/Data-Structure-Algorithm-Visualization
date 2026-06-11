@@ -1,26 +1,29 @@
 import Card from "./Card";
+import insertionSortGif from "./assets/insertion.gif";
+import selectionSortGif from "./assets/selection.gif";
 
 function App() {
   return (
-    <div className="card-container">
-      <div className="flex flex-wrap justify-center">
-
+    <div class="card-container">
+      <div class="card-content">
         <Card 
-        title = "Insertion Sort"
+          title="Insertion Sort"
+          gif={insertionSortGif}
         />
         <Card 
-        title = "Selection Sort" 
+          title="Selection Sort" 
+          gif={selectionSortGif}
         />
         <Card 
-        title = "Bubble Sort"
-        />
-
-        <Card 
-        title = "Merge Sort"
+          title="Bubble Sort"
         />
 
         <Card 
-        title = "Quick Sort"
+          title="Merge Sort"
+        />
+
+        <Card 
+          title="Quick Sort"
         />
 
       </div>
