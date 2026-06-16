@@ -1,6 +1,9 @@
 import Card from "./Card";
 import insertionSortGif from "./assets/insertion.gif";
 import selectionSortGif from "./assets/selection.gif";
+import bubbleSortGif from "./assets/bubble.gif";
+import mergeSortGif from "./assets/merge.gif";
+import quickSortGif from "./assets/quick.gif";
 
 function App() {
   return (
@@ -16,14 +19,17 @@ function App() {
         />
         <Card 
           title="Bubble Sort"
+          gif = {bubbleSortGif}
         />
 
         <Card 
           title="Merge Sort"
+          gif={mergeSortGif}
         />
 
         <Card 
           title="Quick Sort"
+          gif={quickSortGif}
         />
 
       </div>
