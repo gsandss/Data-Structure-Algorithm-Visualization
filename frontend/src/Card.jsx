@@ -1,4 +1,4 @@
-function Card({title, description, color, gif}) {
+function Card({title, description, gif}) {
     return(  
         <div className="card">
             {gif && <img className="card-img" src={gif} alt={`${title} animation`} />}
