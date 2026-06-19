@@ -51,6 +51,4 @@ function HomePage({ algorithms }) {
   );
 }
 
-
-
 export default App;
