@@ -1,5 +1,9 @@
 # Data-Structure-Algorithm-Visualization
 
+Education platform that visualizes key data structures and algorithms. This is a full stack project built using React and Java Spring Boot.
+
+
+
 ## Data Structures
 - Array
 - Stack
