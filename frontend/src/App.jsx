@@ -1,5 +1,5 @@
 import Card from "./Card";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 
 // Gifs
 import insertionSortGif from "./assets/insertion.gif";
@@ -26,7 +26,6 @@ function App() {
   ];
 
   return (
-    <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage algorithms={algorithms} />} />
         <Route path="/insertion-sort" element={<InsertionSortPage />} />
@@ -35,7 +34,6 @@ function App() {
         <Route path="/merge-sort" element={<MergeSortPage />} />
         <Route path="/quick-sort" element={<QuickSortPage />} />
       </Routes>
-    </BrowserRouter>
   );
 }
 
