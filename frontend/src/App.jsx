@@ -1,5 +1,7 @@
 import Card from "./Card";
 import { Routes, Route, Link } from "react-router-dom";
+import AlgorithmPage from "./pages/AlgorithmPage";
+import { algorithms as algorithmsData } from "./data/algorithms";
 
 // Gifs
 import insertionSortGif from "./assets/insertion.gif";
@@ -8,32 +10,40 @@ import bubbleSortGif from "./assets/bubble.gif";
 import mergeSortGif from "./assets/merge.gif";
 import quickSortGif from "./assets/quick.gif";
 
-// Pages
-import SelectionSortPage from "./pages/SelectionSort.jsx"
-import InsertionSortPage from "./pages/InsertionSort.jsx"
-import BubbleSortPage from "./pages/BubbleSort.jsx"
-import MergeSortPage from "./pages/MergeSort.jsx"
-import QuickSortPage from "./pages/QuickSort.jsx"
+const gifMap = {
+  insertionSort: insertionSortGif,
+  selectionSort: selectionSortGif,
+  bubbleSort: bubbleSortGif,
+  mergeSort: mergeSortGif,
+  quickSort: quickSortGif,
+};
+
+const algorithms = Object.keys(algorithmsData).map((key) => {
+  const meta = algorithmsData[key];
+  const path = "/" + key.replace(/([A-Z])/g, "-$1").toLowerCase();
+  return {
+    title: meta.name,
+    name: meta.name,
+    path,
+    gif: gifMap[key],
+    description: meta.description,
+    timeComplexity: meta.timeComplexity,
+    spaceComplexity: meta.spaceComplexity,
+  };
+});
 
 function App() {
-
-  const algorithms = [
-    {title: "Insertion Sort", gif : insertionSortGif, path: "insertion-sort"},
-    {title: "Selection Sort", gif : selectionSortGif, path: "selection-sort"},
-    {title: "Quick Sort", gif : quickSortGif, path: "quick-sort"},
-    {title: "Merge Sort", gif : mergeSortGif, path: "merge-sort"},
-    {title: "Bubble Sort", gif : bubbleSortGif, path: "bubble-sort"}
-  ];
-
   return (
-      <Routes>
-        <Route path="/" element={<HomePage algorithms={algorithms} />} />
-        <Route path="/insertion-sort" element={<InsertionSortPage />} />
-        <Route path="/selection-sort" element={<SelectionSortPage />} />
-        <Route path="/bubble-sort" element={<BubbleSortPage />} />
-        <Route path="/merge-sort" element={<MergeSortPage />} />
-        <Route path="/quick-sort" element={<QuickSortPage />} />
-      </Routes>
+    <Routes>
+      <Route path="/" element={<HomePage algorithms={algorithms} />} />
+      {algorithms.map((algo) => (
+        <Route
+          key={algo.path}
+          path={algo.path}
+          element={<AlgorithmPage algorithm={algo} />}
+        />
+      ))}
+    </Routes>
   );
 }
 
@@ -43,7 +53,12 @@ function HomePage({ algorithms }) {
       <div className="card-content">
         {algorithms.map((algo) => (
           <Link key={algo.path} to={algo.path} style={{ textDecoration: "none" }}>
-            <Card title={algo.title} gif={algo.gif} />
+            <Card
+              title={algo.title}
+              gif={algo.gif}
+              timeComplexity={algo.timeComplexity}
+              spaceComplexity={algo.spaceComplexity}
+            />
           </Link>
         ))}
       </div>

@@ -8,7 +8,7 @@ export const algorithms = {
     },
 
     selectionSort: {
-        name: "Insertion Sort",
+        name: "Selection Sort",
         description: "Selection Sort is a comparison-based sorting algorithm. It sorts by repeatedly selecting the smallest (or largest) element from the unsorted portion and swapping it with the first unsorted element.",
         timeComplexity: "O(n^2)",
         spaceComplexity: "O(1)"
