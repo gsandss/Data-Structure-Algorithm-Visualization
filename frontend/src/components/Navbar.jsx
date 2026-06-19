@@ -4,9 +4,7 @@ import { Link } from 'react-router-dom';
 function Navbar(){
     return(
         <nav className="navbar">
-            <Link to="/" className="nav-text">
-                <h1>DSA Visualization Tool</h1>
-            </Link>
+            <h1 className="nav-text">DSA Visualization Tool</h1>
         </nav>
     )
 }

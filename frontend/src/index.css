@@ -74,7 +74,8 @@ body {
   color: inherit;
 }
 
-.navbar:hover{
-  color: grey;
-
+.description-header{
+  text-align: left;
+  padding-left: 130px;
+  color: darkgreen;
 }

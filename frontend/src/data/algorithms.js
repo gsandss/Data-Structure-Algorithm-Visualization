@@ -1,0 +1,37 @@
+
+export const algorithms = {
+    insertionSort: {
+        name: "Insertion Sort",
+        description: "Insertion sort is a simple sorting algorithm that works by iteratively inserting each element of an unsorted list into its correct position in a sorted portion of the list. It is like sorting playing cards in your hands. You split the cards into two groups: the sorted cards and the unsorted cards. Then, you pick a card from the unsorted group and put it in the right place in the sorted group",
+        timeComplexity: "O(n^2)",
+        spaceComplexity: "O(1)"
+    },
+
+    selectionSort: {
+        name: "Insertion Sort",
+        description: "Selection Sort is a comparison-based sorting algorithm. It sorts by repeatedly selecting the smallest (or largest) element from the unsorted portion and swapping it with the first unsorted element.",
+        timeComplexity: "O(n^2)",
+        spaceComplexity: "O(1)"
+    },
+
+    quickSort: {
+        name: "Quick Sort",
+        description: "QuickSort is a sorting algorithm based on the Divide and Conquer that picks an element as a pivot and partitions the given array around the picked pivot by placing the pivot in its correct position in the sorted array. ",
+        timeComplexity: "O(nlogn)",
+        spaceComplexity: "O(logn)"
+    },
+
+    mergeSort: {
+        name: "Merge Sort",
+        description: "Merge sort is a popular sorting algorithm known for its efficiency and stability. It follows the Divide and Conquer approach. It works by recursively dividing the input array into two halves, recursively sorting the two halves and finally merging them back together to obtain the sorted array.",
+        timeComplexity: "O(nlogn)",
+        spaceComplexity: "O(n)"
+    },
+
+    bubbleSort: {
+        name: "Bubble Sort",
+        description: "Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in the wrong order. This algorithm is not efficient for large data sets as its average and worst-case time complexity are quite high.",
+        timeComplexity: "O(n^2)",
+        spaceComplexity: "O(1)"
+    },
+}
