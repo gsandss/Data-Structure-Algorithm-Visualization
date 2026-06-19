@@ -38,7 +38,7 @@ function AlgorithmPage({ algorithm }){
                     onClick ={() => navigate('/')}
                     style={buttonStyle}
                 >
-                    Return
+                    Back
                 </button>
             </div>
             
