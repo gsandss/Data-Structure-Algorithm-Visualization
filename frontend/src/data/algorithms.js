@@ -16,7 +16,7 @@ export const algorithms = {
 
     quickSort: {
         name: "Quick Sort",
-        description: "QuickSort is a sorting algorithm based on the Divide and Conquer that picks an element as a pivot and partitions the given array around the picked pivot by placing the pivot in its correct position in the sorted array. ",
+        description: "Quick sort is a sorting algorithm based on the Divide and Conquer that picks an element as a pivot and partitions the given array around the picked pivot by placing the pivot in its correct position in the sorted array. ",
         timeComplexity: "O(nlogn)",
         spaceComplexity: "O(logn)"
     },
