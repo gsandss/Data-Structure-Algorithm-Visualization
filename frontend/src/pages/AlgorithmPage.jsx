@@ -28,6 +28,16 @@ const imgWrapperStyle = {
     margin: '16px 0'
 }
 
+const titleStyle = {
+    fontSize: '40px',
+    display: 'table',
+    borderBottom: '2px solid grey',
+    paddingBottom: '8px',
+    margin: '10px auto 0',
+    width: 'fit-content'
+
+}
+
 function AlgorithmPage({ algorithm }){
     const navigate = useNavigate();
 
@@ -41,7 +51,15 @@ function AlgorithmPage({ algorithm }){
                     Back
                 </button>
             </div>
-            
+
+            <h1 style={titleStyle}>
+                {algorithm.name}
+            </h1>
+
+            <p style={cardStyle}>
+                { algorithm.description }
+            </p>
+
             {algorithm.gif ? (
                 <div style={imgWrapperStyle}>
                     <img
@@ -51,15 +69,6 @@ function AlgorithmPage({ algorithm }){
                     />
                 </div>
             ) : null}
-
-            <h1 className="description-header">
-                {algorithm.name}
-            </h1>
-
-
-            <p style={cardStyle}>
-                { algorithm.description }
-            </p>
         </div>
     );
 }

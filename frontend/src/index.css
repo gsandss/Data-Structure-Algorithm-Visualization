@@ -47,7 +47,7 @@ body {
 
 .algorithm-image{
   width: 100%;
-  
+
 }
 
 .card .card-text{
@@ -77,13 +77,6 @@ body {
   text-decoration: none;
   text-align: center;
   color: inherit;
-}
-
-.description-header{
-  text-align: left;
-  padding-left: 130px;
-  padding-right: 130px;
-  color: darkgreen;
 }
 
 .button-style{
