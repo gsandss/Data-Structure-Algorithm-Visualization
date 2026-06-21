@@ -38,14 +38,15 @@ const titleStyle = {
 
 }
 
-function AlgorithmPage({ algorithm }){
+
+function StructurePage({ structure }){
     const navigate = useNavigate();
 
     return(
-        <div className = "description">
+        <div className="description">
             <div className="button-style">
-                <button 
-                    onClick ={() => navigate('/')}
+                <button
+                    onClick={() => navigate('/')}
                     style={buttonStyle}
                 >
                     Back
@@ -53,18 +54,18 @@ function AlgorithmPage({ algorithm }){
             </div>
 
             <h1 style={titleStyle}>
-                {algorithm.title}
+                {structure.title || structure.name}
             </h1>
 
             <p style={cardStyle}>
-                {algorithm.description}
+                {structure.description}
             </p>
 
-            {algorithm.gif ? (
+            {structure.gif ? (
                 <div style={imgWrapperStyle}>
                     <img
-                        src={algorithm.gif}
-                        alt={`${algorithm.name} visualization`}
+                        src={structure.gif}
+                        alt={`${structure.name} visualization`}
                         style={imgStyle}
                     />
                 </div>
@@ -73,4 +74,4 @@ function AlgorithmPage({ algorithm }){
     );
 }
 
-export default AlgorithmPage;
+export default StructurePage;
