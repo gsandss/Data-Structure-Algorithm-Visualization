@@ -120,7 +120,6 @@ function HomePage({ algorithms = [], linearStructures = [], nonLinearStructures 
       </section>
 
       <hr className="section-divider" />
-
       <section className="card-section">
         <h2 className="section-title">Linear Structures</h2>
         <div className="card-grid">
