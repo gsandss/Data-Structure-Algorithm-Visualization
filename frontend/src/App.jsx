@@ -19,7 +19,14 @@ import { nonLinearStructures as nonLinearStructuresData } from "./data/nonLinear
   import linkedListGif from "./assets/linearStructures/linkedList.png";
   import queueGif from "./assets/linearStructures/queue.png";
   import stackGif from "./assets/linearStructures/stack.png";
+  
   // Non-Linear Structures
+  import graphGif from "./assets/nonLinearStructures/graph.png";
+  import treeGif from "./assets/nonLinearStructures/tree.png";
+  import heapGif from "./assets/nonLinearStructures/heap.png";
+  import hashTableGif from "./assets/nonLinearStructures/hashTable.png";
+  import hashSetGif from "./assets/nonLinearStructures/hashSet.png"
+
 
 const gifMap = {
   // Sorting
@@ -33,7 +40,15 @@ const gifMap = {
   array: arrayGif,
   stack: stackGif,
   linkedList: linkedListGif,
-  queue: queueGif
+  queue: queueGif,
+
+  // Non-Linear Structures
+  graph: graphGif,
+  tree: treeGif,
+  heap: heapGif,
+  hashTable: hashTableGif,
+  hashSet: hashSetGif
+
 };
 
 const algorithms = Object.keys(algorithmsData).map((key) => {
@@ -68,6 +83,7 @@ const nonLinearStructures = Object.keys(nonLinearStructuresData).map((key) => {
     title: meta.name,
     path,
     description: meta.description,
+    gif: gifMap[key]
   };
 });
 
@@ -123,7 +139,7 @@ function HomePage({ algorithms = [], linearStructures = [], nonLinearStructures 
         <h2 className="section-title">Sorting Algorithms</h2>
         <div className="card-grid">
           {algorithms.map((algo) => (
-            <Link key={algo.path} to={algo.path} style={{ textDecoration: "none" }}>
+            <Link key={algo.path} to={algo.path} className="card-link">
               <Card
                 title={algo.title}
                 gif={algo.gif}
@@ -140,11 +156,12 @@ function HomePage({ algorithms = [], linearStructures = [], nonLinearStructures 
         <h2 className="section-title">Linear Structures</h2>
         <div className="card-grid">
           {linearStructures.map((structure) => (
-            <Link key={structure.path} to={structure.path} style={{ textDecoration: "none" }}>
-              <Card title={structure.title}
-               description={structure.description} 
-               gif={structure.gif}
-               />
+            <Link key={structure.path} to={structure.path} className="card-link">
+              <Card
+                title={structure.title}
+                description={structure.description}
+                gif={structure.gif}
+              />
             </Link>
           ))}
         </div>
@@ -156,8 +173,12 @@ function HomePage({ algorithms = [], linearStructures = [], nonLinearStructures 
         <h2 className="section-title">Non-Linear Structures</h2>
         <div className="card-grid">
           {nonLinearStructures.map((structure) => (
-            <Link key={structure.path} to={structure.path} style={{ textDecoration: "none" }}>
-              <Card title={structure.title} description={structure.description} />
+            <Link key={structure.path} to={structure.path} className="card-link">
+              <Card
+                title={structure.title}
+                description={structure.description}
+                gif={structure.gif}
+              />
             </Link>
           ))}
         </div>
