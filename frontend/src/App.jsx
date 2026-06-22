@@ -8,11 +8,11 @@ import { nonLinearStructures as nonLinearStructuresData } from "./data/nonLinear
 
 // Gifs
   // Structures
-import insertionSortGif from "./assets/insertion.gif";
-import selectionSortGif from "./assets/selection.gif";
-import bubbleSortGif from "./assets/bubble.gif";
-import mergeSortGif from "./assets/merge.gif";
-import quickSortGif from "./assets/quick.gif";
+  import insertionSortGif from "./assets/sorting/insertion.gif";
+  import selectionSortGif from "./assets/sorting/selection.gif";
+  import bubbleSortGif from "./assets/sorting/bubble.gif";
+  import mergeSortGif from "./assets/sorting/merge.gif";
+  import quickSortGif from "./assets/sorting/quick.gif";
 
   //Linear Structures
 
