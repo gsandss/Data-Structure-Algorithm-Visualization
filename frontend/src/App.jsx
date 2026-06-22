@@ -7,7 +7,7 @@ import { linearStructures as linearStructuresData } from "./data/linearStructure
 import { nonLinearStructures as nonLinearStructuresData } from "./data/nonLinearStructures";
 
 // Gifs
-  // Structures
+  // Sorting
   import insertionSortGif from "./assets/sorting/insertion.gif";
   import selectionSortGif from "./assets/sorting/selection.gif";
   import bubbleSortGif from "./assets/sorting/bubble.gif";
@@ -15,15 +15,25 @@ import { nonLinearStructures as nonLinearStructuresData } from "./data/nonLinear
   import quickSortGif from "./assets/sorting/quick.gif";
 
   //Linear Structures
-
+  import arrayGif from "./assets/linearStructures/array.png";
+  import linkedListGif from "./assets/linearStructures/linkedList.png";
+  import queueGif from "./assets/linearStructures/queue.png";
+  import stackGif from "./assets/linearStructures/stack.png";
   // Non-Linear Structures
 
 const gifMap = {
+  // Sorting
   insertionSort: insertionSortGif,
   selectionSort: selectionSortGif,
   bubbleSort: bubbleSortGif,
   mergeSort: mergeSortGif,
   quickSort: quickSortGif,
+
+  // Linear Structures
+  array: arrayGif,
+  stack: stackGif,
+  linkedList: linkedListGif,
+  queue: queueGif
 };
 
 const algorithms = Object.keys(algorithmsData).map((key) => {
@@ -46,6 +56,8 @@ const linearStructures = Object.keys(linearStructuresData).map((key) => {
     title: meta.name,
     path,
     description: meta.description,
+    gif: gifMap[key]
+    
   };
 });
 
@@ -61,42 +73,46 @@ const nonLinearStructures = Object.keys(nonLinearStructuresData).map((key) => {
 
 function App() {
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <HomePage
-            algorithms={algorithms}
-            linearStructures={linearStructures}
-            nonLinearStructures={nonLinearStructures}
+    <div className="app-shell">
+      <main className="content">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <HomePage
+                algorithms={algorithms}
+                linearStructures={linearStructures}
+                nonLinearStructures={nonLinearStructures}
+              />
+            }
           />
-        }
-      />
 
-      {algorithms.map((algo) => (
-        <Route
-          key={algo.path}
-          path={algo.path}
-          element={<AlgorithmPage algorithm={algo} />}
-        />
-      ))}
+          {algorithms.map((algo) => (
+            <Route
+              key={algo.path}
+              path={algo.path}
+              element={<AlgorithmPage algorithm={algo} />}
+            />
+          ))}
 
-      {linearStructures.map((structure) => (
-        <Route
-          key={structure.path}
-          path={structure.path}
-          element={<StructurePage structure={structure} />}
-        />
-      ))}
+          {linearStructures.map((structure) => (
+            <Route
+              key={structure.path}
+              path={structure.path}
+              element={<StructurePage structure={structure} />}
+            />
+          ))}
 
-      {nonLinearStructures.map((structure) => (
-        <Route
-          key={structure.path}
-          path={structure.path}
-          element={<StructurePage structure={structure} />}
-        />
-      ))}
-    </Routes>
+          {nonLinearStructures.map((structure) => (
+            <Route
+              key={structure.path}
+              path={structure.path}
+              element={<StructurePage structure={structure} />}
+            />
+          ))}
+        </Routes>
+      </main>
+    </div>
   );
 }
 
@@ -125,7 +141,10 @@ function HomePage({ algorithms = [], linearStructures = [], nonLinearStructures 
         <div className="card-grid">
           {linearStructures.map((structure) => (
             <Link key={structure.path} to={structure.path} style={{ textDecoration: "none" }}>
-              <Card title={structure.title} description={structure.description} />
+              <Card title={structure.title}
+               description={structure.description} 
+               gif={structure.gif}
+               />
             </Link>
           ))}
         </div>
