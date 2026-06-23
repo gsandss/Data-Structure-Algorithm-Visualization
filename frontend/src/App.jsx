@@ -54,7 +54,9 @@ const gifMap = {
 const algorithms = Object.keys(algorithmsData).map((key) => {
   const meta = algorithmsData[key];
   const path = "/" + key.replace(/([A-Z])/g, "-$1").toLowerCase();
+  const id = key.replace(/Sort$/, '').toLowerCase();
   return {
+    id,
     title: meta.name,
     path,
     gif: gifMap[key],

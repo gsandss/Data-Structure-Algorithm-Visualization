@@ -1,0 +1,77 @@
+.sv-root{
+    --sv-anim-duration: 600ms;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    align-items:center;
+}
+.sv-controls{
+    display:flex;
+    gap:12px;
+    align-items:center;
+    flex-wrap:wrap;
+}
+.sv-input{
+    width:320px;
+    padding:6px 8px;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+.sv-buttons button{
+    padding:6px 10px;
+    border-radius:6px;
+    border:1px solid #333;
+    background:#fff;
+    cursor:pointer;
+}
+.sv-visual{
+    width:100%;
+    max-width:880px;
+    min-height:420px;
+    border-radius:8px;
+    padding:16px;
+    background:linear-gradient(180deg,#fafafa,#f0f4ff);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+.sv-bars{
+    display:flex;
+    gap:16px;
+    align-items:flex-end;
+    width:100%;
+    justify-content:center;
+}
+.sv-bar{
+    width:52px;
+    background:#e6e6e6;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    border-radius:6px 6px 0 0;
+    position:relative;
+    transition: all 240ms ease;
+}
+.sv-bar.compared{ background: #ffd966; }
+.sv-bar.swapped{ background: #ff9999; }
+.sv-value{
+    font-weight:600;
+    padding:6px 4px 8px 4px;
+}
+.sv-finished{
+    margin-top:10px;
+    color:green;
+    font-weight:700;
+}
+
+.swap-anim{
+    transform: translateY(-16px) scale(1.06);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.14);
+    transition: transform var(--sv-anim-duration, 380ms) cubic-bezier(.2,.9,.3,1), box-shadow var(--sv-anim-duration, 380ms);
+}
+
+.sv-message{
+    margin-top:10px;
+    font-weight:700;
+    color:#b00020;
+}
