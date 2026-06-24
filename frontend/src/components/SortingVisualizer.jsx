@@ -115,6 +115,7 @@ export default function SortingVisualizer({ algorithm }) {
           className="sv-input"
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
+          placeholder='ex: 5, 4, 10, 2'
         />
         <div className="sv-buttons">
           <button onClick={handleStart} disabled={loading}>Start</button>

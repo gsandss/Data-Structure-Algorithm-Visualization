@@ -63,6 +63,7 @@ const algorithms = Object.keys(algorithmsData).map((key) => {
     description: meta.description,
     timeComplexity: meta.timeComplexity,
     spaceComplexity: meta.spaceComplexity,
+    steps: meta.steps || [],
   };
 });
 
@@ -74,7 +75,6 @@ const linearStructures = Object.keys(linearStructuresData).map((key) => {
     path,
     description: meta.description,
     gif: gifMap[key]
-    
   };
 });
 

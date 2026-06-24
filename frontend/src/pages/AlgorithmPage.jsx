@@ -19,6 +19,15 @@ const titleStyle = {
   width: "fit-content",
 };
 
+const subsectionStyle = {
+  fontSize: "30px",
+  display: "table",
+  borderBottom: "2px solid grey",
+  paddingBottom: "8px",
+  margin: "10px auto 0",
+  width: "fit-content",
+}; 
+
 function AlgorithmPage({ algorithm }) {
   const navigate = useNavigate();
 
@@ -36,18 +45,21 @@ function AlgorithmPage({ algorithm }) {
         <div style={{ width: 740 }}>
           <SortingVisualizer algorithm={algorithm} />
         </div>
-
-        {algorithm.gif ? (
-          <div style={{ width: 260, height: 240, textAlign: 'center' }}>
-            <div style={{ fontWeight: 700, marginBottom: 8 }}>Example</div>
-            <img
-              src={algorithm.gif}
-              alt="example"
-              style={{ width: '100%', height: '100%', objectFit: 'contain', borderRadius: 8, border: '1px solid #ddd', background: '#fff' }}
-            />
-          </div>
-        ) : null}
       </section>
+      <div className="steps" style={{ maxWidth: 740, margin: '24px auto' }}>
+        <h2 style={subsectionStyle}>How it Works</h2>
+        {algorithm.steps && algorithm.steps.length > 0 ? (
+          <ol style={{ marginTop: 16, lineHeight: 1.7 }}>
+            {algorithm.steps.map((step, index) => (
+              <li key={index} style={{ marginBottom: 12 }}>
+                {step}
+              </li>
+            ))}
+          </ol>
+        ) : (
+          <p style={{ marginTop: 16 }}>A step-by-step explanation has not been added yet.</p>
+        )}
+      </div>
     </div>
   );
 }

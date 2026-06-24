@@ -27,7 +27,7 @@
 .sv-visual{
     width:100%;
     max-width:880px;
-    min-height:420px;
+    min-height:220px;
     border-radius:8px;
     padding:16px;
     background:linear-gradient(180deg,#fafafa,#f0f4ff);
