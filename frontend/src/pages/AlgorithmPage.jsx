@@ -8,6 +8,7 @@ const cardStyle = {
   paddingRight: "60px",
   maxWidth: 900,
   margin: "0 auto",
+  padding: "20px"
 };
 
 const titleStyle = {
