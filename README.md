@@ -1,6 +1,6 @@
 # DSA Lab
 
-An interactive data structures and algorithms lab by Gavin Sands. Try a sorting step on the homepage, then choose a lesson to experiment with your own numbers or explore how a structure behaves.
+An interactive data structures and algorithms lab. Try a sorting step on the homepage, then choose a lesson to experiment with your own numbers or explore how a structure behaves.
 
 **[Open DSA Lab](https://gsandss-dsa.vercel.app/)**
 
