@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { createState, advance } from '../sorting/engine.mjs';
 import './SortingVisualizer.css';
 
+const API_BASE = import.meta.env.VITE_API_BASE;
 const DEFAULT_INPUT = '5,3,8,1,4';
 
 export default function SortingVisualizer({ algorithm }) {
@@ -12,7 +14,6 @@ export default function SortingVisualizer({ algorithm }) {
   const [swappedIndices, setSwappedIndices] = useState([]);
   const prevArrayRef = useRef(null);
 
-  const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:4000';
 
   function parseArray(text) {
     return text
@@ -44,11 +45,26 @@ export default function SortingVisualizer({ algorithm }) {
 
   async function handleStart() {
     const arr = parseArray(inputText);
-    await startSession(arr);
+    if (!arr.length || !arr.every(Number.isFinite)) {
+      return alert('Enter a comma-separated list of numbers.');
+    }
+    setSwapMessage('');
+    setSwappedIndices([]);
+    if (API_BASE) {
+      await startSession(arr);
+    } else {
+      prevArrayRef.current = arr;
+      setSimState(createState(algorithm.id, arr));
+    }
   }
 
   async function handleStep() {
-    if (!sessionId) return alert('Start a session first');
+    if (!simState || simState.finished) return;
+    if (!API_BASE) {
+      prevArrayRef.current = simState.array;
+      setSimState(advance(algorithm.id, structuredClone(simState)));
+      return;
+    }
     setLoading(true);
     try {
       // capture previous array before requesting next state
@@ -119,7 +135,7 @@ export default function SortingVisualizer({ algorithm }) {
         />
         <div className="sv-buttons">
           <button onClick={handleStart} disabled={loading}>Start</button>
-          <button onClick={handleStep} disabled={loading || !sessionId}>Step</button>
+          <button onClick={handleStep} disabled={loading || !simState || simState.finished}>Step</button>
         </div>
       </div>
 

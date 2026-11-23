@@ -44,7 +44,7 @@ function AlgorithmPage({ algorithm }) {
 
       <section style={{ display: 'flex', gap: 24, alignItems: 'flex-start', justifyContent: 'center', marginTop: 12 }}>
         <div style={{ width: 740 }}>
-          <SortingVisualizer algorithm={algorithm} />
+          <SortingVisualizer key={algorithm.id} algorithm={algorithm} />
         </div>
       </section>
       <div className="steps" style={{ maxWidth: 740, margin: '24px auto' }}>
