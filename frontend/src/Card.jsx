@@ -1,14 +1,17 @@
-function Card({title, description, gif, timeComplexity, spaceComplexity}) {
-    return(  
-        <div className="card">
-            {gif && <img className="card-img" src={gif} alt={`${title} animation`} />}
-            <h2 className="card-title">{title}</h2>
-            <div className="card-meta">
-                {timeComplexity && <small>Time: {timeComplexity}</small>}
-                {spaceComplexity && <small style={{marginLeft: '12px'}}>Space: {spaceComplexity}</small>}
-            </div>
-        </div>
-    );
+import { Link } from 'react-router-dom'
+export function TopicMark({ group }) {
+  return (
+    <span className={'mark mark-' + group} aria-hidden="true">
+      {group === 0 ? '▥' : group === 1 ? '▦' : '⑂'}
+    </span>
+  )
 }
-
-export default Card;
+export default function Card({ topic }) {
+  return (
+    <Link className={'topic group-' + topic.group} to={'/' + topic.slug}>
+      <TopicMark group={topic.group} />
+      <h3>{topic.title}</h3>
+      <p>{topic.summary}</p>
+    </Link>
+  )
+}

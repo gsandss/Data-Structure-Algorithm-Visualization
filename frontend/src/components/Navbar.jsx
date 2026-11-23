@@ -1,12 +1,13 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-
-function Navbar(){
-    return(
-        <nav className="navbar">
-            <h1 className="nav-text">DSA Visualization Tool</h1>
-        </nav>
-    )
+import { Link } from 'react-router-dom'
+export default function Navbar() {
+  return (
+    <header>
+      <nav className="wrap">
+        <Link to="/" className="brand">
+          <b aria-hidden="true">▥</b> DSA Lab
+        </Link>
+        <Link to="/#topics">Topic library</Link>
+      </nav>
+    </header>
+  )
 }
-
-export default Navbar;

@@ -1,192 +1,104 @@
-import Card from "./Card";
-import { Routes, Route, Link } from "react-router-dom";
-import AlgorithmPage from "./pages/AlgorithmPage";
-import StructurePage from "./pages/StructurePage";
-import { algorithms as algorithmsData } from "./data/algorithms";
-import { linearStructures as linearStructuresData } from "./data/linearStructures";
-import { nonLinearStructures as nonLinearStructuresData } from "./data/nonLinearStructures";
+import { useEffect, useState } from 'react'
+import { Routes, Route, Link, useLocation, useParams } from 'react-router-dom'
+import Card from './Card'
+import SortingVisualizer from './components/SortingVisualizer'
+import StructurePage from './pages/StructurePage'
+import AlgorithmPage from './pages/AlgorithmPage'
+import { topics, categories } from './data/topics'
 
-// Gifs
-  // Sorting
-  import insertionSortGif from "./assets/sorting/insertion.gif";
-  import selectionSortGif from "./assets/sorting/selection.gif";
-  import bubbleSortGif from "./assets/sorting/bubble.gif";
-  import mergeSortGif from "./assets/sorting/merge.gif";
-  import quickSortGif from "./assets/sorting/quick.gif";
-
-  //Linear Structures
-  import arrayGif from "./assets/linearStructures/array.png";
-  import linkedListGif from "./assets/linearStructures/linkedList.png";
-  import queueGif from "./assets/linearStructures/queue.png";
-  import stackGif from "./assets/linearStructures/stack.png";
-  
-  // Non-Linear Structures
-  import graphGif from "./assets/nonLinearStructures/graph.png";
-  import treeGif from "./assets/nonLinearStructures/tree.png";
-  import heapGif from "./assets/nonLinearStructures/heap.png";
-  import hashTableGif from "./assets/nonLinearStructures/hashTable.png";
-  import hashSetGif from "./assets/nonLinearStructures/hashSet.png"
-
-
-const gifMap = {
-  // Sorting
-  insertionSort: insertionSortGif,
-  selectionSort: selectionSortGif,
-  bubbleSort: bubbleSortGif,
-  mergeSort: mergeSortGif,
-  quickSort: quickSortGif,
-
-  // Linear Structures
-  array: arrayGif,
-  stack: stackGif,
-  linkedList: linkedListGif,
-  queue: queueGif,
-
-  // Non-Linear Structures
-  graph: graphGif,
-  tree: treeGif,
-  heap: heapGif,
-  hashTable: hashTableGif,
-  hashSet: hashSetGif
-
-};
-
-const algorithms = Object.keys(algorithmsData).map((key) => {
-  const meta = algorithmsData[key];
-  const path = "/" + key.replace(/([A-Z])/g, "-$1").toLowerCase();
-  const id = key.replace(/Sort$/, '').toLowerCase();
-  return {
-    id,
-    title: meta.name,
-    path,
-    gif: gifMap[key],
-    description: meta.description,
-    timeComplexity: meta.timeComplexity,
-    spaceComplexity: meta.spaceComplexity,
-    steps: meta.steps || [],
-  };
-});
-
-const linearStructures = Object.keys(linearStructuresData).map((key) => {
-  const meta = linearStructuresData[key];
-  const path = "/" + key.replace(/([A-Z])/g, "-$1").toLowerCase();
-  return {
-    title: meta.name,
-    path,
-    description: meta.description,
-    gif: gifMap[key]
-  };
-});
-
-const nonLinearStructures = Object.keys(nonLinearStructuresData).map((key) => {
-  const meta = nonLinearStructuresData[key];
-  const path = "/" + key.replace(/([A-Z])/g, "-$1").toLowerCase();
-  return {
-    title: meta.name,
-    path,
-    description: meta.description,
-    gif: gifMap[key]
-  };
-});
-
-function App() {
+function Home() {
+  const [group, setGroup] = useState('All topics')
+  const visible = topics.filter((t) => group === 'All topics' || categories[t.group] === group)
   return (
-    <div className="app-shell">
-      <main className="content">
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <HomePage
-                algorithms={algorithms}
-                linearStructures={linearStructures}
-                nonLinearStructures={nonLinearStructures}
-              />
-            }
-          />
-
-          {algorithms.map((algo) => (
-            <Route
-              key={algo.path}
-              path={algo.path}
-              element={<AlgorithmPage algorithm={algo} />}
-            />
+    <>
+      <section className="hero">
+        <div className="wrap hero-grid">
+          <div>
+            <h1>
+              Learn DSA
+              <br />
+              <em>by doing.</em>
+            </h1>
+            <p>
+              See how data moves. Make a prediction, take a step, and discover how algorithms and
+              data structures work.
+            </p>
+            <a className="primary btn" href="#topics">
+              Explore topics
+            </a>
+          </div>
+          <div className="demo-frame">
+            <SortingVisualizer algorithm={topics[0]} compact />
+          </div>
+        </div>
+      </section>
+      <section id="topics" className="wrap library">
+        <div className="section-title">
+          <h2>Topic library</h2>
+          <span>{visible.length} topics</span>
+        </div>
+        <div className="filters" role="group" aria-label="Filter topics">
+          {['All topics', ...categories].map((g) => (
+            <button key={g} aria-pressed={g === group} onClick={() => setGroup(g)}>
+              {g}
+            </button>
           ))}
-
-          {linearStructures.map((structure) => (
-            <Route
-              key={structure.path}
-              path={structure.path}
-              element={<StructurePage structure={structure} />}
-            />
+        </div>
+        <div className="cards">
+          {visible.map((t) => (
+            <Card topic={t} key={t.slug} />
           ))}
-
-          {nonLinearStructures.map((structure) => (
-            <Route
-              key={structure.path}
-              path={structure.path}
-              element={<StructurePage structure={structure} />}
-            />
-          ))}
-        </Routes>
-      </main>
-    </div>
-  );
+        </div>
+      </section>
+    </>
+  )
 }
-
-function HomePage({ algorithms = [], linearStructures = [], nonLinearStructures = [] }) {
+function Lesson() {
+  const { slug } = useParams()
+  const topic = topics.find((t) => t.slug === slug)
+  if (!topic)
+    return (
+      <div className="wrap lesson">
+        <h1>Topic not found</h1>
+        <Link to="/#topics">Browse topics</Link>
+      </div>
+    )
   return (
-    <div className="home-page">
-      <section className="card-section">
-        <h2 className="section-title">Sorting Algorithms</h2>
-        <div className="card-grid">
-          {algorithms.map((algo) => (
-            <Link key={algo.path} to={algo.path} className="card-link">
-              <Card
-                title={algo.title}
-                gif={algo.gif}
-                timeComplexity={algo.timeComplexity}
-                spaceComplexity={algo.spaceComplexity}
-              />
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <hr className="section-divider" />
-      <section className="card-section">
-        <h2 className="section-title">Linear Structures</h2>
-        <div className="card-grid">
-          {linearStructures.map((structure) => (
-            <Link key={structure.path} to={structure.path} className="card-link">
-              <Card
-                title={structure.title}
-                description={structure.description}
-                gif={structure.gif}
-              />
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <hr className="section-divider" />
-
-      <section className="card-section">
-        <h2 className="section-title">Non-Linear Structures</h2>
-        <div className="card-grid">
-          {nonLinearStructures.map((structure) => (
-            <Link key={structure.path} to={structure.path} className="card-link">
-              <Card
-                title={structure.title}
-                description={structure.description}
-                gif={structure.gif}
-              />
-            </Link>
-          ))}
-        </div>
-      </section>
-    </div>
-  );
+    <article className="wrap lesson">
+      <Link className="back" to="/#topics">
+        Topic library
+      </Link>
+      <div className="lesson-head">
+        <p className="category">{categories[topic.group]}</p>
+        <h1>{topic.title}</h1>
+        <p>{topic.summary}</p>
+      </div>
+      {topic.group === 0 ? <AlgorithmPage topic={topic} /> : <StructurePage topic={topic} />}
+      <p className="next-topic">
+        Explore next{' '}
+        <Link to={'/' + topics[(topics.indexOf(topic) + 1) % topics.length].slug}>
+          {topics[(topics.indexOf(topic) + 1) % topics.length].title}
+        </Link>
+      </p>
+    </article>
+  )
 }
-
-export default App;
+export default function App() {
+  const { pathname, hash } = useLocation()
+  useEffect(() => {
+    document.title =
+      (topics.find((t) => '/' + t.slug === pathname)?.title || 'Interactive topic library') +
+      ' | DSA Lab'
+    if (hash === '#topics') document.getElementById('topics')?.scrollIntoView()
+    else window.scrollTo(0, 0)
+  }, [pathname, hash])
+  return (
+    <main id="main">
+      <Routes>
+        <Route index element={<Home />} />
+        <Route path=":slug" element={<Lesson />} />
+        <Route path="*" element={<Lesson />} />
+      </Routes>
+    </main>
+  )
+}

@@ -1,77 +1,15 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-
-const cardStyle={
-    fontSize: '18px',
-    paddingLeft: '150px',
-    fontSize: '20px',
-    paddingRight: '150px'
-};
-
-const buttonStyle={
-    display: 'flex',
-    alignItems: 'center',
-    cursor: 'pointer',
-    padding: '5px',
-    gap: '8px'
+import StructureLab from '../components/StructureLab'
+import { practice } from '../data/topics'
+export default function StructurePage({ topic }) {
+  return (
+    <div className="lesson-grid">
+      <StructureLab key={topic.slug} topic={topic} />
+      <aside className="notes">
+        <h2>Where it shows up</h2>
+        <p>{practice[topic.slug][0]}</p>
+        <h2>Make a prediction</h2>
+        <p>{practice[topic.slug][1]}</p>
+      </aside>
+    </div>
+  )
 }
-
-const imgStyle={
-    maxWidth: '100%', 
-    height: '200px',
-    display: 'block',
-    border: '3px solid black'
-}
-const imgWrapperStyle = {
-    display: 'flex',
-    justifyContent: 'center',
-    margin: '16px 0'
-}
-
-const titleStyle = {
-    fontSize: '40px',
-    display: 'table',
-    borderBottom: '2px solid grey',
-    paddingBottom: '8px',
-    margin: '10px auto 0',
-    width: 'fit-content'
-
-}
-
-
-function StructurePage({ structure }){
-    const navigate = useNavigate();
-
-    return(
-        <div className="description">
-            <div className="button-style">
-                <button
-                    onClick={() => navigate('/')}
-                    style={buttonStyle}
-                >
-                    Back
-                </button>
-            </div>
-
-            <h1 style={titleStyle}>
-                {structure.title || structure.name}
-            </h1>
-
-            <p style={cardStyle}>
-                {structure.description}
-            </p>
-
-            {structure.gif ? (
-                <div style={imgWrapperStyle}>
-                    <img
-                        src={structure.gif}
-                        alt={`${structure.name} visualization`}
-                        style={imgStyle}
-                    />
-                </div>
-            ) : null}
-        </div>
-    );
-}
-
-export default StructurePage;
